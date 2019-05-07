@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Table from './compo/Table';
 
 class App extends Component {
+  // constructor(){
+  //   super();
+  //   this.name;
+  //   this.pictureUrl;
+  //   this.popularity;
+  // }   
+  
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1 className="App-title">Ironhack Contacts</h1>
+        <table>
+          <tr>
+            <th>Picture</th>
+            <th>Name</th>
+            <th>Popularity</th>
+          </tr>
+          <Table />
+        </table>
       </div>
     );
   }
