@@ -9,12 +9,28 @@ class App extends Component {
     this.state = {
       contactsList: contacts.slice(0,5)
     }
-  }   
+    this.clickToAdd = this.clickToAdd.bind(this);
+  }
+  
+  clickToAdd(){
+    const selected = this.state.contactsList;
+    const randomContact = Math.floor(Math.random()*contacts.length)
+    if(selected.includes(contacts[randomContact])){
+      this.clickToAdd()
+    }
+    else {
+      selected.push(contacts[randomContact]);
+      this.setState({
+        contactsList: selected
+      })      
+    }
+  }
   
   render() {
     return (
       <div className="App">
         <h1 className="App-title">Ironhack Contacts</h1>
+        <button onClick={this.clickToAdd}>Add Random Contacts</button>
         <table>
           <thead>
             <tr>
