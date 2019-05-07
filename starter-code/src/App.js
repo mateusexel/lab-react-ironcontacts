@@ -10,6 +10,8 @@ class App extends Component {
       contactsList: contacts.slice(0,5)
     }
     this.clickToAdd = this.clickToAdd.bind(this);
+    this.sortByName = this.sortByName.bind(this);
+    this.sortByPopularity = this.sortByPopularity.bind(this);
   }
   
   clickToAdd(){
@@ -25,12 +27,48 @@ class App extends Component {
       })      
     }
   }
-  
+
+  sortByName(){
+    const selected = this.state.contactsList.slice();
+    selected.sort((a, b) => {
+      if (a.name < b.name) {
+        return 1;
+      }
+      if (a.name > b.name) {
+        return -1;
+      }
+      // a deve ser igual a b
+      return 0;
+    });
+    this.setState({
+      contactsList: selected
+    })
+  }
+
+  sortByPopularity(){
+    const selected = this.state.contactsList.slice();
+    selected.sort((a, b) => {
+      if (a.popularity < b.popularity) {
+        return -1;
+      }
+      if (a.popularity > b.popularity) {
+        return 1;
+      }
+      // a deve ser igual a b
+      return 0;
+    });
+    this.setState({
+      contactsList: selected
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <h1 className="App-title">Ironhack Contacts</h1>
         <button onClick={this.clickToAdd}>Add Random Contacts</button>
+        <button onClick={this.sortByName}>Sort by Name</button>
+        <button onClick={this.sortByPopularity}>Sort by Popularity</button>
         <table>
           <thead>
             <tr>
